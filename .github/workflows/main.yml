@@ -1,0 +1,17 @@
+name: Auto Sync Fork
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Runs every day at midnight
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Sync fork
+        uses: wei/pull@v5
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }} 
+          upstream_branch: sussy-code/sudo-proxy:dev
+          target_branch: dev
